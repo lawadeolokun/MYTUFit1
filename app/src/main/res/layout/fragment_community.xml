@@ -10,45 +10,95 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Header Section -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvCommunityHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Community Page"
-            android:padding="10dp"
-            android:textSize="30sp" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
 
+        <!-- Placeholder Content -->
+        <TextView
+            android:id="@+id/tvCommunityPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to the community! Engage with other students, ask questions and share tips."
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Discuss fitness tips"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Share healthy meal ideas"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Connect with running groups"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginVertical="16dp" />
+
+        <!-- Community Posts -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Holly Chambers: Loving the workouts!"
             android:padding="10dp"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mike Conley: Does anyone have meal prep ideas?"
             android:padding="10dp"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mark Lee: Today's walk was refreshing!"
             android:padding="10dp"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Law Adeolokun: How is everyone doing!"
             android:padding="10dp"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sam Roberts: Can someone help me find a run group!"
             android:padding="10dp"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Richard Dunne: Anyone know any gyms I can join?"
+            android:padding="10dp"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>
