@@ -11,10 +11,15 @@ import androidx.fragment.app.Fragment
 
 class LoginFragment : Fragment() {
 
+    private lateinit var dbHelper: DatabaseHelper
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Initialize DatabaseHelper
+        dbHelper = DatabaseHelper(requireContext())
+
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
         val emailInput = view.findViewById<EditText>(R.id.etEmail)
@@ -22,13 +27,19 @@ class LoginFragment : Fragment() {
         val loginButton = view.findViewById<Button>(R.id.btnLogin)
 
         loginButton.setOnClickListener {
-            val email = emailInput.text.toString()
-            val password = passwordInput.text.toString()
+            val email = emailInput.text.toString().trim()
+            val password = passwordInput.text.toString().trim()
 
-            if (email == "user@example.com" && password == "password") {
-                Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+            if (email.isBlank() || password.isBlank()) {
+                Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show()
+                val isLoggedIn = dbHelper.loginUser(email, password)
+                if (isLoggedIn) {
+                    Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+                    // Navigate to another fragment or activity (e.g., CommunityFragment)
+                } else {
+                    Toast.makeText(requireContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
