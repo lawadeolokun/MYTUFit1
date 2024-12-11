@@ -7,13 +7,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
 
         <!-- Header Section -->
         <TextView
             android:id="@+id/tvCommunityHeader"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Community Page"
             android:textSize="24sp"
@@ -21,84 +23,68 @@
             android:gravity="center"
             android:layout_marginBottom="16dp" />
 
-        <!-- Placeholder Content -->
-        <TextView
-            android:id="@+id/tvCommunityPlaceholder"
+        <!-- Filter Buttons -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to the community! Engage with other students, ask questions and share tips."
-            android:textSize="16sp"
-            android:padding="8dp" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Discuss fitness tips"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp" />
+            <Button
+                android:id="@+id/btnWeightLoss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight Loss"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Share healthy meal ideas"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            <Button
+                android:id="@+id/btnWeightGain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight Gain"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Connect with running groups"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            <Button
+                android:id="@+id/btnRunningGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Running Group"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginVertical="16dp" />
+            <Button
+                android:id="@+id/btnBestSnacksForProtein"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Best Snacks for Protein"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white" />
 
-        <!-- Community Posts -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Holly Chambers: Loving the workouts!"
-            android:padding="10dp"
-            android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnStretches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stretches"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mike Conley: Does anyone have meal prep ideas?"
-            android:padding="10dp"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mark Lee: Today's walk was refreshing!"
-            android:padding="10dp"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Law Adeolokun: How is everyone doing!"
-            android:padding="10dp"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sam Roberts: Can someone help me find a run group!"
-            android:padding="10dp"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Richard Dunne: Anyone know any gyms I can join?"
-            android:padding="10dp"
-            android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnGeneralChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="General Chat"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

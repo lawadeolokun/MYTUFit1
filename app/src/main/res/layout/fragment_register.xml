@@ -7,6 +7,17 @@
     android:gravity="center"
     android:padding="16dp">
 
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/tvRegisterHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Page"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"

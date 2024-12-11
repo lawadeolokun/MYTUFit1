@@ -36,9 +36,8 @@ class LoginFragment : Fragment() {
                 val isLoggedIn = dbHelper.loginUser(email, password)
                 if (isLoggedIn) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                    // Navigate to another fragment or activity (e.g., CommunityFragment)
                 } else {
-                    Toast.makeText(requireContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Email or Password is incorrect", Toast.LENGTH_SHORT).show()
                 }
             }
         }
