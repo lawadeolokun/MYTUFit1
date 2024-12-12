@@ -14,7 +14,8 @@ class RegisterFragment : Fragment() {
     private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Initialize the DatabaseHelper
