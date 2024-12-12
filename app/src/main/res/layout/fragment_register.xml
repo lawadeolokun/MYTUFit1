@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:padding="12dp" />
 
 </LinearLayout>

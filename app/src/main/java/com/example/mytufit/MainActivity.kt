@@ -6,29 +6,33 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        // Set the default fragment
-        replaceFragment(RegisterFragment())
+        // Load RegisterFragment by default
+        loadFragment(RegisterFragment())
 
-        // Handle navigation item selection
+        // Handle bottom navigation clicks
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_register -> replaceFragment(RegisterFragment())
-                R.id.nav_login -> replaceFragment(LoginFragment())
-                R.id.nav_community -> replaceFragment(CommunityFragment())
+                R.id.nav_register -> loadFragment(RegisterFragment())
+                R.id.nav_login -> loadFragment(LoginFragment())
+                R.id.nav_community -> loadFragment(CommunityFragment())
+                else -> false
             }
             true
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    // Function to load fragments
+    private fun loadFragment(fragment: Fragment): Boolean {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+        return true
     }
 }
