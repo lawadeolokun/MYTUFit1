@@ -36,6 +36,8 @@ class LoginFragment : Fragment() {
                 val isLoggedIn = dbHelper.loginUser(email, password)
                 if (isLoggedIn) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+                    val bundle = Bundle().apply { putString("USERNAME", email) }
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment, bundle)
                 } else {
                     Toast.makeText(requireContext(), "Email or Password is incorrect", Toast.LENGTH_SHORT).show()
                 }
