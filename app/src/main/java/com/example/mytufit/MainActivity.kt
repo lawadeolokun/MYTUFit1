@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         // Set the default fragment
-        replaceFragment(HomeFragment())
+        replaceFragment(RegisterFragment())
 
         // Handle navigation item selection
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_register -> replaceFragment(RegisterFragment())
                 R.id.nav_login -> replaceFragment(LoginFragment())
                 R.id.nav_community -> replaceFragment(CommunityFragment())
-                R.id.nav_home -> replaceFragment(HomeFragment())
             }
             true
         }

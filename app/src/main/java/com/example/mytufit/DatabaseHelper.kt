@@ -18,6 +18,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         const val COLUMN_EMAIL = "email"
         const val COLUMN_PASSWORD = "password"
 
+        // Posts Table
+        const val TABLE_POSTS = "posts"
+        const val POST_ID = "id"
+        const val POST_CATEGORY = "category"
+        const val POST_MESSAGE = "message"
+
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -32,10 +38,21 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         """
         db?.execSQL(createUsersTable)
 
+        //Create Posts Table
+        val createPostsTable = """
+            CREATE TABLE $TABLE_POSTS (
+                $POST_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $POST_CATEGORY TEXT NOT NULL,
+                $POST_MESSAGE TEXT NOT NULL
+            )
+        """
+        db?.execSQL(createPostsTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_POSTS")
+
         onCreate(db)
     }
 
@@ -62,6 +79,18 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val result = db.insert(TABLE_USERS, null, contentValues)
         db.close()
         return result != -1L // Returns true if the insertion is successful
+    }
+
+    fun addPost(category: String, message: String): Boolean {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put(POST_CATEGORY, category)
+            put(POST_MESSAGE, message)
+        }
+
+        val result = db.insert(TABLE_POSTS, null, contentValues)
+        db.close()
+        return result != -1L
     }
 
 }
