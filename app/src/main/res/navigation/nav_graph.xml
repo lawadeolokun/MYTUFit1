@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/loginFragment">
+
+    <!-- Login Fragment -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.mytufit.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <!-- Navigate from Login to Register -->
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+
+        <!-- Navigate from Login to Home -->
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <!-- Register Fragment -->
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.mytufit.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+
+        <!-- Navigate from Register to Login -->
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+        <!-- Navigate from Register to Home (if you want) -->
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <!-- Home Fragment -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mytufit.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <!-- Navigate from Home back to Login (for Logout) -->
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+        <!-- Navigate from Home to Community -->
+        <action
+            android:id="@+id/action_homeFragment_to_communityFragment"
+            app:destination="@id/communityFragment" />
+
+        <!-- Navigate from Home to MealMenu -->
+        <action
+            android:id="@+id/action_homeFragment_to_mealMenuFragment"
+            app:destination="@id/mealMenuFragment" />
+
+        <!-- Navigate from Home to Workouts -->
+        <action
+            android:id="@+id/action_homeFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
+
+        <!-- Navigate from Home to Write (if you want a direct link) -->
+        <action
+            android:id="@+id/action_homeFragment_to_writeFragment"
+            app:destination="@id/writeFragment" />
+    </fragment>
+
+    <!-- Community Fragment -->
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="com.example.mytufit.CommunityFragment"
+        android:label="Community"
+        tools:layout="@layout/fragment_community">
+
+        <!-- Example action to WriteFragment if you want a "New Post" button -->
+        <action
+            android:id="@+id/action_communityFragment_to_writeFragment"
+            app:destination="@id/writeFragment" />
+    </fragment>
+
+    <!-- Meal Menu Fragment -->
+    <fragment
+        android:id="@+id/mealMenuFragment"
+        android:name="com.example.mytufit.MealMenuFragment"
+        android:label="Meal Menu"
+        tools:layout="@layout/fragment_meal_menu" />
+
+    <!-- Workouts Fragment -->
+    <fragment
+        android:id="@+id/workoutsFragment"
+        android:name="com.example.mytufit.WorkoutsFragment"
+        android:label="Workouts"
+        tools:layout="@layout/fragment_workouts" />
+
+    <!-- Write Fragment (for creating new posts, etc.) -->
+    <fragment
+        android:id="@+id/writeFragment"
+        android:name="com.example.mytufit.WriteFragment"
+        android:label="Write"
+        tools:layout="@layout/fragment_write" />
+
+</navigation>

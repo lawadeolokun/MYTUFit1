@@ -1,0 +1,59 @@
+package com.example.mytufit
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+
+// RegisterFragment: allows users to create an account
+class RegisterFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the registration layout
+        val view = inflater.inflate(R.layout.fragment_register, container, false)
+        auth = FirebaseAuth.getInstance()
+
+        // Bind UI elements
+        val etEmail = view.findViewById<EditText>(R.id.etEmail)
+        val etPassword = view.findViewById<EditText>(R.id.etPassword)
+        val btnRegister = view.findViewById<Button>(R.id.btnRegister)
+        val tvGotoLogin = view.findViewById<TextView>(R.id.tvGotoLogin)
+
+        // Register button click logic
+        btnRegister.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Email and password cannot be empty", Toast.LENGTH_SHORT).show()
+            } else {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(requireContext(), "Registration Successful!", Toast.LENGTH_SHORT).show()
+                            // Navigate back to LoginFragment after successful registration
+                            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                        } else {
+                            Toast.makeText(requireContext(), "Registration Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            }
+        }
+
+        // Navigate to LoginFragment if the user already has an account
+        tvGotoLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
+        return view
+    }
+}

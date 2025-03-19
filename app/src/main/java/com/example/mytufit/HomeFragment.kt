@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
@@ -15,17 +15,33 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the XML layout
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val welcomeTextView = view.findViewById<TextView>(R.id.tvWelcome)
-        val logoutButton = view.findViewById<Button>(R.id.btnLogout)
+        // Bind UI elements
+        val btnCommunity = view.findViewById<Button>(R.id.btnCommunity)
+        val btnWorkouts = view.findViewById<Button>(R.id.btnWorkouts)
+        val btnMealMenu = view.findViewById<Button>(R.id.btnMealMenu)
+        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
 
-        // Retrieve username from arguments (passed after login)
-        val username = arguments?.getString("USERNAME") ?: "User"
-        welcomeTextView.text = "Welcome, $username!"
+        // Navigate to CommunityFragment
+        btnCommunity.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_communityFragment)
+        }
 
-        logoutButton.setOnClickListener {
-            // Navigate back to Login screen
+        // Navigate to WorkoutsFragment
+        btnWorkouts.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_workoutsFragment)
+        }
+
+        // Navigate to MealMenuFragment
+        btnMealMenu.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_mealMenuFragment)
+        }
+
+        // Logout
+        btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
 

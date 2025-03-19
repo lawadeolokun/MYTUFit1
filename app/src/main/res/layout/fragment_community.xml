@@ -3,27 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_gravity="center">
+        android:padding="16dp">
 
-        <!-- Header Section -->
+        <!-- Header TextView -->
         <TextView
             android:id="@+id/tvCommunityHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Community Page"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
             android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="24dp" />
 
-        <!-- Filter Buttons -->
+        <!-- Inner layout for buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,27 +38,27 @@
                 android:id="@+id/btnWeightLoss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weight Loss"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:text="Weight Loss Chat"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/btnWeightGain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weight Gain"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:text="Weight Gain Chat"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/btnRunningGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Running Group"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:text="Running Group Chat"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -63,17 +66,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Best Snacks for Protein"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/btnStretches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Stretches"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:text="Stretching Tips"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -81,10 +84,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="General Chat"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>
+

@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 
+// CommunityFragment uses a hybrid approach: it inflates an XML layout with buttons
 class CommunityFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the XML layout
         val view = inflater.inflate(R.layout.fragment_community, container, false)
 
-        // Initialize buttons
+        // Find each button by ID
         val btnWeightLoss = view.findViewById<Button>(R.id.btnWeightLoss)
         val btnWeightGain = view.findViewById<Button>(R.id.btnWeightGain)
         val btnRunningGroup = view.findViewById<Button>(R.id.btnRunningGroup)
@@ -46,7 +49,7 @@ class CommunityFragment : Fragment() {
         return view
     }
 
-    // Helper function to navigate to a new fragment
+    // Helper function to replace the current fragment
     private fun navigateToFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)

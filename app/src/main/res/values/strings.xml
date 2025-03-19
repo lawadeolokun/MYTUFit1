@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MYTUFit</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="community">Community</string>
+    <!-- Add more as needed -->
 </resources>
