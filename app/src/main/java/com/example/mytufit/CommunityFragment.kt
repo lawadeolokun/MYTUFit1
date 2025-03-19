@@ -51,9 +51,9 @@ class CommunityFragment : Fragment() {
 
     // Helper function to replace the current fragment
     private fun navigateToFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
+        //parentFragmentManager.beginTransaction()
+           // .replace(R.id.fragment_container, fragment)
+           // .addToBackStack(null)
+           // .commit()
     }
 }

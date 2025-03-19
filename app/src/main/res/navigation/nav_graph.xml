@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_communityFragment_to_writeFragment"
             app:destination="@id/writeFragment" />
+        <action
+            android:id="@+id/action_communityFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
     <!-- Meal Menu Fragment -->
@@ -94,12 +97,19 @@
         android:label="Meal Menu"
         tools:layout="@layout/fragment_meal_menu" />
 
+    <action
+        android:id="@+id/action_communityFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
+
     <!-- Workouts Fragment -->
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="com.example.mytufit.WorkoutsFragment"
         android:label="Workouts"
         tools:layout="@layout/fragment_workouts" />
+    <action
+        android:id="@+id/action_workoutsFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
 
     <!-- Write Fragment (for creating new posts, etc.) -->
     <fragment
