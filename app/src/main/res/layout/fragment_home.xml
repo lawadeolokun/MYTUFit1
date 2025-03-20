@@ -1,51 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp">
 
+
+    <!-- Buttons -->
+
     <TextView
         android:id="@+id/tvGreeting"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Hi, user!"
-        android:textSize="24sp"
-        android:layout_marginBottom="16dp"/>
+        android:textSize="22sp" />
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="249dp"
+        android:layout_height="220dp" />
 
-    <!-- Buttons -->
     <Button
         android:id="@+id/btnCommunity"
-        android:layout_width="wrap_content"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:text="Community"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="11dp"
+        android:textColor="@color/white"
+        app:cornerRadius="10dp"
+        app:backgroundTint="#3D52C7"
+
+        android:text="Community" />
 
     <Button
         android:id="@+id/btnWorkouts"
-        android:layout_width="wrap_content"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:text="Workouts"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="11dp"
+        android:textColor="@color/white"
+        app:cornerRadius="10dp"
+        app:backgroundTint="#3D52C7"
+        android:text="Workouts" />
 
     <Button
         android:id="@+id/btnMealMenu"
-        android:layout_width="wrap_content"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:text="Meal Menu"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="11dp"
+        android:textColor="@color/white"
+        app:cornerRadius="10dp"
+        app:backgroundTint="#3D52C7"
+        android:text="Meal Menu" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:textColor="@color/white"
+        app:cornerRadius="14dp"
+        app:backgroundTint="#DA0303"
         android:layout_marginTop="16dp" />
 </LinearLayout>

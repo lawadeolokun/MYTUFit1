@@ -9,7 +9,6 @@ plugins {
 android {
     namespace = "com.example.mytufit"
 
-    // If you want a stable compileSdk, use 34 (Android 14).
     compileSdk = 35
 
     defaultConfig {
@@ -49,12 +48,13 @@ android {
 
     // Configure the Compose compiler extension version
     composeOptions {
-        // Must match your Kotlin version & Compose BOM
+
         kotlinCompilerExtensionVersion = "1.5.4"
     }
 }
 
 dependencies {
+
     // Navigation (Fragment and UI)
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.8")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.8")
@@ -66,8 +66,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-appcheck-ktx")
+    implementation("com.google.android.material:material:1.9.0")
 
-    // implementation("com.google.firebase:firebase-firestore-ktx")
 
     // Core & Lifecycle
     implementation("androidx.core:core-ktx:1.15.0")
@@ -95,4 +95,5 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 }
