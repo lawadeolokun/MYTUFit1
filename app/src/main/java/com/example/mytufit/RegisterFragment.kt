@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 class RegisterFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
+    private val firebaseHelper = FirebaseHelper()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +24,7 @@ class RegisterFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         // Bind UI elements
+        val etName = view.findViewById<EditText>(R.id.etName)
         val etEmail = view.findViewById<EditText>(R.id.etEmail)
         val etPassword = view.findViewById<EditText>(R.id.etPassword)
         val btnRegister = view.findViewById<Button>(R.id.btnRegister)
@@ -30,15 +32,21 @@ class RegisterFragment : Fragment() {
 
         // Register button click logic
         btnRegister.setOnClickListener {
+            val name = etName.text.toString().trim()
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Email and password cannot be empty", Toast.LENGTH_SHORT).show()
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
             } else {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+
+                            val userId = auth.currentUser?.uid
+                            userId?.let {
+                                firebaseHelper.writeNewUser(userId, name, email)
+                            }
                             Toast.makeText(requireContext(), "Registration Successful!", Toast.LENGTH_SHORT).show()
                             // Navigate back to LoginFragment after successful registration
                             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)

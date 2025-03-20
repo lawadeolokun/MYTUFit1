@@ -19,10 +19,23 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         // Bind UI elements
+        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val btnCommunity = view.findViewById<Button>(R.id.btnCommunity)
         val btnWorkouts = view.findViewById<Button>(R.id.btnWorkouts)
         val btnMealMenu = view.findViewById<Button>(R.id.btnMealMenu)
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
+
+        // fetch name database
+        val userId = authcurrentUser?.uid
+        if (userId  != null) {
+            firebaseHelper.readUserData(userId) { user ->
+                user?.let {
+                    // Update greeting with user's name
+                    tvGreeting.text = "Hi, ${it.name}"
+                }
+            }
+        }
+
 
         // Navigate to CommunityFragment
         btnCommunity.setOnClickListener {
