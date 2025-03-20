@@ -7,33 +7,45 @@
     android:gravity="center"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi, user!"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"/>
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Buttons -->
     <Button
         android:id="@+id/btnCommunity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Community" />
+        android:text="Community"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnWorkouts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Workouts"
+        android:text="Workouts"
         android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnMealMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Go to Meal Menu" />
+        android:text="Meal Menu"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:textColor="@android:color/white"/>
-        />
+        android:layout_marginTop="16dp" />
 </LinearLayout>
