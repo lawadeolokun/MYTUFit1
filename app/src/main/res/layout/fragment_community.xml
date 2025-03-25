@@ -68,7 +68,7 @@
                 android:id="@+id/btnBestSnacksForProtein"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Best Snacks for Protein"
+                android:text="Best Snacks and Meals"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />

@@ -37,7 +37,7 @@ class TopicDetailFragment :Fragment() {
 
         // Setup RecyclerView
         rvPosts.layoutManager = LinearLayoutManager(requireContext())
-        postAdapter = PostAdapter(postList)
+        postAdapter = PostAdapter(postList, topicName)  // Pass the second argument here
         rvPosts.adapter = postAdapter
 
         // Initialize Firebase database reference
