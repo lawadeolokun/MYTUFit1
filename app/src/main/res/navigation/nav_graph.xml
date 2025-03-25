@@ -58,6 +58,10 @@
         android:name="com.example.mytufit.CommunityFragment"
         android:label="Community"
         tools:layout="@layout/fragment_community">
+
+        <action
+            android:id="@+id/action_communityFragment_to_topicDetailFragment"
+            app:destination="@id/topicDetailFragment"/>
         <action
             android:id="@+id/action_communityFragment_to_writeFragment"
             app:destination="@id/writeFragment"/>
@@ -65,6 +69,18 @@
             android:id="@+id/action_communityFragment_to_homeFragment"
             app:destination="@id/homeFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/topicDetailFragment"
+        android:name="com.example.mytufit.TopicDetailFragment"
+        android:label="Topic Detail"
+        tools:layout="@layout/fragment_topic_detail">
+
+        <action
+            android:id="@+id/action_topicDetailFragment_to_writeFragment"
+            app:destination="@id/writeFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/mealMenuFragment"

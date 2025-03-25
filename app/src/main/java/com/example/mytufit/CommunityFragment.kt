@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
-// CommunityFragment uses a hybrid approach: it inflates an XML layout with buttons
+// CommunityFragment uses a hybrid approach it inflates an XML layout with buttons
 class CommunityFragment : Fragment() {
 
     override fun onCreateView(
@@ -26,34 +27,32 @@ class CommunityFragment : Fragment() {
         val btnStretches = view.findViewById<Button>(R.id.btnStretches)
         val btnGeneralChat = view.findViewById<Button>(R.id.btnGeneralChat)
 
-        // Set click listeners to navigate to respective fragments
+        // When a button is clicked, navigate to TopicDetailFragment with the chosen topic name.
         btnWeightLoss.setOnClickListener {
-            navigateToFragment(WriteFragment.newInstance("Weight Loss"))
+            val bundle = Bundle().apply { putString("topicName", "Weight Loss") }
+            findNavController().navigate(R.id.action_communityFragment_to_topicDetailFragment, bundle)
         }
         btnWeightGain.setOnClickListener {
-            navigateToFragment(WriteFragment.newInstance("Weight Gain"))
+            val bundle = Bundle().apply { putString("topicName", "Weight Gain") }
+            findNavController().navigate(R.id.action_communityFragment_to_topicDetailFragment, bundle)
         }
         btnRunningGroup.setOnClickListener {
-            navigateToFragment(WriteFragment.newInstance("Running Group"))
+            val bundle = Bundle().apply { putString("topicName", "Running Group") }
+            findNavController().navigate(R.id.action_communityFragment_to_topicDetailFragment, bundle)
         }
         btnBestSnacksForProtein.setOnClickListener {
-            navigateToFragment(WriteFragment.newInstance("Best Snacks for Protein"))
+            val bundle = Bundle().apply { putString("topicName", "Best Snacks and Meals") }
+            findNavController().navigate(R.id.action_communityFragment_to_topicDetailFragment, bundle)
         }
         btnStretches.setOnClickListener {
-            navigateToFragment(WriteFragment.newInstance("Stretches"))
+            val bundle = Bundle().apply { putString("topicName", "Best Stretches") }
+            findNavController().navigate(R.id.action_communityFragment_to_topicDetailFragment, bundle)
         }
         btnGeneralChat.setOnClickListener {
-            navigateToFragment(WriteFragment.newInstance("General Chat"))
+            val bundle = Bundle().apply { putString("topicName", "General Chat") }
+            findNavController().navigate(R.id.action_communityFragment_to_topicDetailFragment, bundle)
         }
-
         return view
     }
 
-    // Helper function to replace the current fragment
-    private fun navigateToFragment(fragment: Fragment) {
-        //parentFragmentManager.beginTransaction()
-           // .replace(R.id.fragment_container, fragment)
-           // .addToBackStack(null)
-           // .commit()
-    }
 }

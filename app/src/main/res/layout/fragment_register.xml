@@ -12,26 +12,29 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="16dp" />
-
         <!-- Header for Registration -->
+
+        <!-- Email Input Field -->
+
+
         <TextView
             android:id="@+id/tvRegisterHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="Register"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="bold" />
 
-        <!-- Email Input Field -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Full Name"
+            android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"

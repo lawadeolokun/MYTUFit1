@@ -5,7 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import android.widget.TextView
+import android.widget.Button
+import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class WriteFragment : Fragment() {
 
@@ -15,27 +20,37 @@ class WriteFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_write, container, false)
 
-        // Get the topic passed from CommunityFragment
-        val topic = arguments?.getString("topic") ?: "Community Chat"
 
-        // Set the topic in the TextView
-        val topicTextView = view.findViewById<TextView>(R.id.tvTopic)
-        topicTextView.text = topic
+        val topicName = arguments?.getString("topicName") ?: "General Chat"
+        val etTitle = view.findViewById<EditText>(R.id.etTitle)
+        val etBody = view.findViewById<EditText>(R.id.etBody)
+        val btnSubmit = view.findViewById<Button>(R.id.btnSubmit)
 
-        return view
+        btnSubmit.setOnClickListener {
+            val title = etTitle.text.toString()
+            val body = etBody.text.toString()
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+            val timestamp = System.currentTimeMillis()
 
-    }
+            val database = FirebaseDatabase.getInstance().reference
+            val postId = database.child("topics").child(topicName).child("posts").push().key
 
-    companion object {
-        fun newInstance(topic: String): WriteFragment {
-            val fragment = WriteFragment()
-            val args = Bundle()
-            args.putString("topic", topic)
-            fragment.arguments = args
-            return fragment
+            if (postId != null && userId != null) {
+                val newPost = Post(
+                    postId = postId,
+                    title = title,
+                    body = body,
+                    userId = userId,
+                    timestamp = timestamp
+                )
+                database.child("topics").child(topicName).child("posts").child(postId).setValue(newPost)
+                    .addOnCompleteListener {
+                        // After submission, return to the TopicDetailFragment
+                        findNavController().popBackStack()
+                    }
+            }
         }
 
-
-}
-
+        return view
+    }
 }
