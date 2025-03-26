@@ -13,11 +13,13 @@
         android:hint="Topic Title" />
 
     <EditText
-        android:id="@+id/etBody"
+        android:id="@+id/etMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Write your question..."
-        android:layout_marginTop="16dp"/>
+        android:hint="Write your post here..."
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:maxLines="7"/>
 
     <Button
         android:id="@+id/btnSubmit"

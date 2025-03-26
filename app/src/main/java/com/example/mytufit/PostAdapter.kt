@@ -35,9 +35,9 @@ class PostAdapter(
         val hasLiked = currentUserId != null && post.likes?.containsKey(currentUserId) == true
 
         if (hasLiked) {
-            holder.btnLike.setImageResource(R.drawable.ic_like_filled)
+            holder.btnLike.setImageResource(android.R.drawable.btn_star_big_on)
         } else {
-            holder.btnLike.setImageResource(R.drawable.ic_like_outline)
+            holder.btnLike.setImageResource(android.R.drawable.btn_star_big_off)
         }
 
         // Like button toggle
@@ -56,6 +56,8 @@ class PostAdapter(
                     likesRef.child(currentUserId).setValue(true)
                 }
             }
+            // Immediately reflect change in UI
+            notifyItemChanged(holder.adapterPosition)
         }
     }
 
