@@ -1,7 +1,7 @@
 package com.example.mytufit
 
-import android.util.Log
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,33 +10,40 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class WriteFragment : Fragment() {
 
     private lateinit var etTitle: EditText
     private lateinit var etMessage: EditText
     private lateinit var btnSubmit: Button
-    private lateinit var database: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore
     private var topicName: String = "General Chat"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the write post layout
         val view = inflater.inflate(R.layout.fragment_write, container, false)
 
+        // Show a toast to confirm the fragment is being loaded
+        Toast.makeText(requireContext(), "WriteFragment loaded", Toast.LENGTH_SHORT).show()
+
+        // Initialize views
         etTitle = view.findViewById(R.id.etTitle)
         etMessage = view.findViewById(R.id.etMessage)
         btnSubmit = view.findViewById(R.id.btnSubmit)
-        database = FirebaseDatabase.getInstance().reference
 
-        // Retrieve the topic name from arguments passed by TopicDetailFragment
+        // Init Firestore
+        firestore = FirebaseFirestore.getInstance()
+
+        // Get the topic name from arguments
         topicName = arguments?.getString("topicName") ?: "General Chat"
 
         btnSubmit.setOnClickListener {
+            Log.d("WriteFragment", "Submit button clicked")
+
             val titleText = etTitle.text.toString().trim()
             val messageText = etMessage.text.toString().trim()
 
@@ -47,44 +54,45 @@ class WriteFragment : Fragment() {
             }
         }
 
-
         return view
     }
 
     private fun writePost(topic: String, titleText: String, messageText: String) {
-        // Create a new key for the post under topics/<topic>/posts
-        val postId = database.child("topics").child(topic).child("posts").push().key
+        val postId = firestore.collection("topics")
+            .document(topic)
+            .collection("posts")
+            .document()
+            .id  // Generate unique Firestore ID
 
-        Log.d("WritePost", "Generated postId: $postId") //DEBUG
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "anonymous"
 
-        if (postId == null) {
-            Toast.makeText(context, "Error posting. Try again.", Toast.LENGTH_SHORT).show()
-            return
-        }
-        // Create the Post object with all required fields
         val newPost = Post(
             postId = postId,
-            topic = topic,   // from arguments
-            title = titleText,   // from etTitle
-            body = messageText,  // from etMessage
+            topic = topic,
+            userId = userId,
+            title = titleText,
+            body = messageText,
+            timestamp = System.currentTimeMillis(),
             likes = emptyMap()
         )
 
-        Log.d("WritePost", "Writing to Firebase: $newPost")
-        // Save the post in Firebase under topics/<topic>/posts/<postId>
-        database.child("topics").child(topic).child("posts").child(postId)
-            .setValue(newPost)
+        Toast.makeText(context, "Submitting post...", Toast.LENGTH_SHORT).show()
+
+        firestore.collection("topics")
+            .document(topic)
+            .collection("posts")
+            .document(postId)
+            .set(newPost)
             .addOnSuccessListener {
-                Log.d("WritePost", "POST SUCCESS!")
-                Toast.makeText(context, "Post submitted successfully!", Toast.LENGTH_SHORT).show()
+                Log.d("WriteFragment", "Post uploaded to Firestore")
+                Toast.makeText(context, "✅ Post submitted!", Toast.LENGTH_SHORT).show()
                 etTitle.text.clear()
                 etMessage.text.clear()
                 findNavController().popBackStack()
             }
             .addOnFailureListener {
-                Log.e("WritePost", "POST FAILED: ${it.message}")
+                Log.e("WriteFragment", "❌ Failed to write post: ${it.message}")
                 Toast.makeText(context, "Failed: ${it.message}", Toast.LENGTH_LONG).show()
             }
-
     }
 }
