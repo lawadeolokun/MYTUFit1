@@ -90,7 +90,16 @@
         <action
             android:id="@+id/action_mealMenuFragment_to_homeFragment"
             app:destination="@id/homeFragment"/>
+        <action
+            android:id="@+id/action_mealMenuFragment_to_mealPlansFragment"
+            app:destination="@id/mealPlansFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/mealPlansFragment"
+        android:name="com.example.mytufit.MealPlansFragment"
+        android:label="Meal Plans"
+        tools:layout="@layout/fragment_meal_plans" />
 
     <fragment
         android:id="@+id/workoutsFragment"

@@ -16,6 +16,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <!-- Content for Workouts -->
-    <!-- Your workouts UI elements go here -->
+
 
 </LinearLayout>

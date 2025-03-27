@@ -3,5 +3,5 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="community">Community</string>
-    <!-- Add more as needed -->
+    <string name="meal_plans">Meal Plans</string>
 </resources>

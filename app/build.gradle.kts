@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin") // Safe Args Plugin
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.gms.google-services") // Firebase Plugin
+    id("kotlin-kapt") // Glide compliler
 }
 
 android {
@@ -69,6 +70,9 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.firebase:firebase-firestore-ktx")
 
+    // Glide for image loading
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
 
     // Core & Lifecycle
