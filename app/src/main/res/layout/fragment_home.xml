@@ -9,21 +9,18 @@
     android:gravity="center"
     android:padding="16dp">
 
-
-    <!-- Buttons -->
-
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Hi, user!"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="315dp"
-        android:layout_height="271dp" />
+        android:layout_width="237dp"
+        android:layout_height="288dp" />
 
     <Button
         android:id="@+id/btnCommunity"
@@ -33,7 +30,6 @@
         android:textColor="@color/white"
         app:cornerRadius="10dp"
         app:backgroundTint="#3D52C7"
-
         android:text="Community" />
 
     <Button
