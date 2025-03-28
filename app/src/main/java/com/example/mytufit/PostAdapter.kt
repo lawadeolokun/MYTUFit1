@@ -7,15 +7,17 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FieldValue
 
 class PostAdapter(
     private var posts: MutableList<Post>,
-    private val topicName: String  // Posts are stored under topics/{topicName}/posts
+    private val topicName: String  // Posts are stored under topics
 ) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     private val auth = FirebaseAuth.getInstance()
-    private val database = FirebaseDatabase.getInstance().reference
+    private val firestore = FirebaseFirestore.getInstance()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -42,22 +44,16 @@ class PostAdapter(
 
         // Like button toggle
         holder.btnLike.setOnClickListener {
-            if (currentUserId != null && post.postId != null) {
-                val likesRef = database.child("topics")
-                    .child(topicName)
-                    .child("posts")
-                    .child(post.postId)
-                    .child("likes")
-                if (hasLiked) {
-                    // Unlike
-                    likesRef.child(currentUserId).removeValue()
-                } else {
-                    // Like
-                    likesRef.child(currentUserId).setValue(true)
-                }
+            val postRef = firestore.collection("topics")
+                .document(topicName)
+                .collection("posts")
+                .document(post.postId ?: return@setOnClickListener)
+
+            if (hasLiked) {
+                postRef.update("likes", FieldValue.arrayRemove(currentUserId))
+            } else {
+                postRef.update("likes", FieldValue.arrayUnion(currentUserId))
             }
-            // Immediately reflect change in UI
-            notifyItemChanged(holder.adapterPosition)
         }
     }
 

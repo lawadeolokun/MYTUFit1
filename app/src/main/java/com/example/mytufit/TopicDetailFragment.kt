@@ -11,15 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class TopicDetailFragment :Fragment() {
 
     private lateinit var rvPosts: RecyclerView
     private lateinit var btnNewPost: Button
     private lateinit var tvTopicTitle: TextView
-    private lateinit var database: DatabaseReference
+
     private lateinit var postAdapter: PostAdapter
     private val postList = mutableListOf<Post>()
+
+    private lateinit var firestore: FirebaseFirestore
+    private var listenerRegistration: ListenerRegistration? = null
+    private lateinit var topicName: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,32 +38,20 @@ class TopicDetailFragment :Fragment() {
         btnNewPost = view.findViewById(R.id.btnNewPost)
 
         // Retrieve topic from arguments (passed from CommunityFragment)
-        val topicName = arguments?.getString("topicName") ?: "General Chat"
+        topicName = arguments?.getString("topicName") ?: "General Chat"
         tvTopicTitle.text = topicName
+
+        // Setup Firestore
+        firestore = FirebaseFirestore.getInstance()
 
         // Setup RecyclerView
         rvPosts.layoutManager = LinearLayoutManager(requireContext())
         postAdapter = PostAdapter(postList, topicName)  // Pass the second argument here
         rvPosts.adapter = postAdapter
 
-        // Initialize Firebase database reference
-        database = FirebaseDatabase.getInstance().reference
+        // Load posts from Firestore
+        listenForPosts()
 
-        // Query Firebase for posts under the selected topic
-        database.child("topics").child(topicName).child("posts")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    postList.clear()
-                    for (postSnapshot in snapshot.children) {
-                        val post = postSnapshot.getValue(Post::class.java)
-                        post?.let { postList.add(it) }
-                    }
-                    postAdapter.notifyDataSetChanged()
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle errors
-                }
-            })
 
         // New Post button: navigate to WriteFragment, passing the topic name
         btnNewPost.setOnClickListener {
@@ -67,5 +61,23 @@ class TopicDetailFragment :Fragment() {
 
         return view
     }
+    private fun listenForPosts() {
+        listenerRegistration = firestore.collection("topics")
+            .document(topicName)
+            .collection("posts")
+            .addSnapshotListener { snapshot, error ->
+                if (error != null || snapshot == null) return@addSnapshotListener
 
+                postList.clear()
+                for (doc in snapshot.documents) {
+                    val post = doc.toObject(Post::class.java)
+                    post?.let { postList.add(it) }
+                }
+                postAdapter.notifyDataSetChanged()
+            }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        listenerRegistration?.remove()
+    }
 }
