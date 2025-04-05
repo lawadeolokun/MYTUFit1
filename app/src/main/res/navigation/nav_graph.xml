@@ -96,6 +96,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/drinkMenuFragment"
+        android:name="com.example.mytufit.DrinkMenuFragment"
+        android:label="Drink Menu"
+        tools:layout="@layout/fragment_drink_menu" />
+
+    <fragment
         android:id="@+id/mealPlansFragment"
         android:name="com.example.mytufit.MealPlansFragment"
         android:label="Meal Plans"

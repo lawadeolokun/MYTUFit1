@@ -26,4 +26,14 @@
         app:backgroundTint="#7EA943"
         app:cornerRadius="10dp" />
 
+    <Button
+        android:id="@+id/btnDrinkPlans"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:text="Drink Plans"
+        app:backgroundTint="#7EA943"
+        app:cornerRadius="10dp" />
+
+
 </LinearLayout>
