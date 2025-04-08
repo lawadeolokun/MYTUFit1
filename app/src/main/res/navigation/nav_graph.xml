@@ -87,19 +87,24 @@
         android:name="com.example.mytufit.MealMenuFragment"
         android:label="Meal Menu"
         tools:layout="@layout/fragment_meal_menu">
+
         <action
             android:id="@+id/action_mealMenuFragment_to_homeFragment"
-            app:destination="@id/homeFragment"/>
+            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_mealMenuFragment_to_mealPlansFragment"
-            app:destination="@id/mealPlansFragment"/>
+            app:destination="@id/mealPlansFragment" />
+        <action
+            android:id="@+id/action_mealMenuFragment_to_drinkPlansFragment"
+            app:destination="@id/drinkPlansFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/drinkMenuFragment"
-        android:name="com.example.mytufit.DrinkMenuFragment"
-        android:label="Drink Menu"
-        tools:layout="@layout/fragment_drink_menu" />
+        android:id="@+id/drinkPlansFragment"
+        android:name="com.example.mytufit.DrinkPlansFragment"
+        android:label="Drink Plans"
+        tools:layout="@layout/fragment_drink_plans" />
+
 
     <fragment
         android:id="@+id/mealPlansFragment"

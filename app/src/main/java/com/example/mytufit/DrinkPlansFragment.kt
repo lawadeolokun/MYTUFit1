@@ -1,6 +1,7 @@
 package com.example.mytufit
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,42 +11,45 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 
-class DrinkMenuFragment : Fragment() {
+class DrinkPlansFragment : Fragment() {
 
-    private lateinit var rvDrinks: RecyclerView
-    private lateinit var adapter: DrinkAdapter
-    private val drinkList = mutableListOf<Drink>()
+    private lateinit var rvDrinkPlans: RecyclerView
+    private lateinit var adapter: DrinkPlanAdapter
+    private val drinkList = mutableListOf<DrinkPlan>()
     private val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_drink_menu, container, false)
+    ): View {
+        val view = inflater.inflate(R.layout.fragment_meal_plans, container, false)
 
-        rvDrinks = view.findViewById(R.id.rvDrinkMenu)
-        rvDrinks.layoutManager = LinearLayoutManager(requireContext())
-        adapter = DrinkAdapter(drinkList)
-        rvDrinks.adapter = adapter
+        // Setup RecyclerView
+        rvDrinkPlans = view.findViewById(R.id.rvMealPlans)
+        rvDrinkPlans.layoutManager = LinearLayoutManager(requireContext())
+        adapter = DrinkPlanAdapter(drinkList)
+        rvDrinkPlans.adapter = adapter
 
         fetchDrinks()
 
         return view
     }
 
+    // Fetch drinks from Firestore
     private fun fetchDrinks() {
-        firestore.collection("drinks")
+        Toast.makeText(requireContext(), "Loading drinks...", Toast.LENGTH_SHORT).show()
+        firestore.collection("drinkPlans")
             .get()
             .addOnSuccessListener { snapshot ->
                 drinkList.clear()
                 for (doc in snapshot.documents) {
-                    val drink = doc.toObject(Drink::class.java)
-                    drink?.let { drinkList.add(it) }
+                    val drink = doc.toObject(DrinkPlan::class.java)
+                    if (drink != null) drinkList.add(drink)
                 }
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to load drinks", Toast.LENGTH_SHORT).show()
+                Log.e("DRINK_FETCH", "Error: ${it.message}", it)
             }
     }
 }

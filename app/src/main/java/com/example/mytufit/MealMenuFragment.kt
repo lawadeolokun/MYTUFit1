@@ -31,11 +31,12 @@ class MealMenuFragment : Fragment() {
             findNavController().navigate(R.id.action_mealMenuFragment_to_mealPlansFragment)
         }
 
-        // navigate to Drink plans
-        val btnDrinks = view.findViewById<Button>(R.id.btnDrinks)
-        btnDrinks.setOnClickListener {
-            findNavController().navigate(R.id.action_mealMenuFragment_to_drinkMenuFragment)
+        // Navigate to Drink Plans screen
+        val btnDrinkPlans = view.findViewById<Button>(R.id.btnDrinkPlans)
+        btnDrinkPlans.setOnClickListener {
+            findNavController().navigate(R.id.action_mealMenuFragment_to_drinkPlansFragment)
         }
+
 
         return view
     }

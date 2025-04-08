@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import android.util.Log
+
 
 class MealPlansFragment : Fragment() {
 
@@ -35,18 +37,35 @@ class MealPlansFragment : Fragment() {
     }
     // Load meal plans from Firestore and update RecyclerView
     private fun fetchMeals() {
+        Toast.makeText(requireContext(), "fetchMeals called", Toast.LENGTH_SHORT).show()
+        Log.d("MEAL_FETCH", "fetchMeals() triggered")
+
         firestore.collection("mealPlans")
             .get()
             .addOnSuccessListener { snapshot ->
+                Log.d("MEAL_FETCH", "Fetched ${snapshot.size()} documents")
+
                 mealList.clear()
                 for (doc in snapshot.documents) {
-                    val meal = doc.toObject(MealPlan::class.java)
-                    meal?.let { mealList.add(it) }
+                    try {
+                        val meal = doc.toObject(MealPlan::class.java)
+                        if (meal != null) {
+                            mealList.add(meal)
+                            Log.d("MEAL_FETCH", "Added meal: ${meal.name}")
+                        } else {
+                            Log.w("MEAL_FETCH", "Conversion returned null for ${doc.id}")
+                        }
+                    } catch (e: Exception) {
+                        Log.e("MEAL_FETCH", "Failed to convert ${doc.id}: ${e.message}")
+                    }
                 }
+
+
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to load meals", Toast.LENGTH_SHORT).show()
+                Log.e("MEAL_FETCH", "Error: ${it.message}", it)
             }
     }
+
 }

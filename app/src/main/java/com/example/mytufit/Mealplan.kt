@@ -2,13 +2,14 @@ package com.example.mytufit
 
 // This is a data class that matches Firestore meal document fields
 data class MealPlan(
-    val name: String = "",                // Name of the meal
-    val category: String = "",            // Category (Omnivorous, Vegan, Spicy)
-    val calories: Int = 0,                // Calorie count
-    val protein: Int = 0,                 // Protein grams
-    val carbs: Int = 0,                   // Carbs grams
-    val duration: String = "",            // Estimated cooking time
-    val directions: String = "",          // Cooking instructions
-    val ingredients: List<String> = emptyList(), // Ingredients list
-    val imageUrl: String = ""             // URL to meal image
+    val name: String = "",
+    val category: String = "",
+    val calories: Int = 0,
+    val protein: Int = 0,
+    val carbs: Int = 0,
+    val duration: String = "",
+    val directions: String = "",
+    val ingredients: List<String> = emptyList(),
+    val imageUrl: String = "",
+    val reference: String = ""
 )
