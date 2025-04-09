@@ -37,6 +37,13 @@ class MealMenuFragment : Fragment() {
             findNavController().navigate(R.id.action_mealMenuFragment_to_drinkPlansFragment)
         }
 
+        //Navigate to favourite section
+        val btnFavorites = view.findViewById<Button>(R.id.btnFavorites)
+        btnFavorites.setOnClickListener {
+            findNavController().navigate(R.id.action_mealMenuFragment_to_favoritesFragment)
+        }
+
+
 
         return view
     }

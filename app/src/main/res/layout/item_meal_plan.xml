@@ -13,6 +13,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:background="@null"
+            android:src="@drawable/ic_heart_outline"
+            android:contentDescription="Favorite"/>
+
+
+
         <ImageView
             android:id="@+id/ivMealImage"
             android:layout_width="match_parent"

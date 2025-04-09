@@ -11,5 +11,21 @@ data class MealPlan(
     val directions: String = "",
     val ingredients: List<String> = emptyList(),
     val imageUrl: String = "",
-    val reference: String = ""
-)
+    val docId: String = "",
+    val isFavorite: Boolean = false
+) {
+    constructor() : this(
+        name = "",
+        category = "",
+        calories = 0,
+        protein = 0,
+        carbs = 0,
+        duration = "",
+        directions = "",
+        ingredients = listOf(),
+        imageUrl = "",
+        docId = "",
+        isFavorite = false
+    )
+}
+
