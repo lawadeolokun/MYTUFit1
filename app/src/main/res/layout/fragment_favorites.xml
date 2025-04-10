@@ -5,16 +5,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <TextView
+        android:id="@+id/tvFavoritesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Search drinks..."
-        android:iconifiedByDefault="false" />
+        android:text="Your Favorites"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="12dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDrinkPlans"
+        android:id="@+id/rvFavorites"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp" />
+        android:layout_height="match_parent" />
 </LinearLayout>

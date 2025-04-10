@@ -97,7 +97,17 @@
         <action
             android:id="@+id/action_mealMenuFragment_to_drinkPlansFragment"
             app:destination="@id/drinkPlansFragment" />
+        <action
+            android:id="@+id/action_mealMenuFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.mytufit.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites" />
+
 
     <fragment
         android:id="@+id/drinkPlansFragment"
