@@ -87,6 +87,9 @@ dependencies {
     implementation("androidx.activity:activity:1.9.3")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
 
+    implementation ("androidx.media3:media3-exoplayer:1.2.1")
+    implementation ("androidx.media3:media3-ui:1.2.1")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

@@ -19,6 +19,13 @@ class MealPlanAdapter(private val meals: List<MealPlan>) :
         val ivMealImage: ImageView = itemView.findViewById(R.id.ivMealImage)
         val tvIngredients: TextView = itemView.findViewById(R.id.tvIngredients)
         val tvDirections: TextView = itemView.findViewById(R.id.tvDirections)
+        val tvCalories: TextView = itemView.findViewById(R.id.tvCalories)
+        val tvProtein: TextView = itemView.findViewById(R.id.tvProtein)
+        val tvCarbs: TextView = itemView.findViewById(R.id.tvCarbs)
+        val tvDuration: TextView = itemView.findViewById(R.id.tvDuration)
+        val tvReference: TextView = itemView.findViewById(R.id.tvReference)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealViewHolder {
@@ -31,8 +38,12 @@ class MealPlanAdapter(private val meals: List<MealPlan>) :
         val meal = meals[position]
         holder.tvMealName.text = meal.name
         holder.tvMealCategory.text = meal.category
-        holder.tvIngredients.text = meal.ingredients.joinToString("\n")
-        holder.tvDirections.text = meal.directions
+        holder.tvIngredients.text = "Ingredients:\n${meal.ingredients.joinToString("\n")}"
+        holder.tvDirections.text = "Directions:\n${meal.directions}"
+        holder.tvCalories.text = "${meal.calories} kcal"
+        holder.tvProtein.text = "Protein ${meal.protein}g"
+        holder.tvCarbs.text = "Carbs ${meal.carbs}g"
+        holder.tvDuration.text = meal.duration
 
         // Load image using Glide
         Glide.with(holder.itemView.context)

@@ -34,11 +34,11 @@ class DrinkPlanAdapter(private val drinkList: List<DrinkPlan>) :
         holder.tvName.text = drink.name
         holder.tvCategory.text = drink.category
         holder.tvCalories.text = "${drink.calories} kcal"
-        holder.tvProtein.text = "${drink.protein}g Protein"
-        holder.tvCarbs.text = "${drink.carbs}g Carbs"
+        holder.tvProtein.text = "Protein ${drink.protein}g"
+        holder.tvCarbs.text = "Carbs ${drink.carbs}g"
         holder.tvDuration.text = drink.duration
-        holder.tvIngredients.text = drink.ingredients.joinToString("\n")
-        holder.tvDirections.text = drink.directions
+        holder.tvIngredients.text = "Ingredients:\n${drink.ingredients.joinToString("\n")}"
+        holder.tvDirections.text = "Directions:\n${drink.directions}"
         Glide.with(holder.itemView.context).load(drink.imageUrl).into(holder.ivDrinkImage)
     }
 

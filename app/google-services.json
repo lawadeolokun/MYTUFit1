@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29634484133",
+    "project_id": "mytufit-ba1c6",
+    "storage_bucket": "mytufit-ba1c6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29634484133:android:a710bb77cebeda18a33a4c",
+        "android_client_info": {
+          "package_name": "com.example.mytufit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUTpjgVd372Yq6LdGiB8IdMp8b1z5PABc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

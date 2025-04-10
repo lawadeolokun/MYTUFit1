@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import android.widget.Button
+
 
 class WorkoutsFragment : Fragment() {
 
@@ -19,11 +21,15 @@ class WorkoutsFragment : Fragment() {
 
         // Set up toolbar with up arrow
         val toolbar = view.findViewById<Toolbar>(R.id.toolbarWorkouts)
-        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_workoutsFragment_to_homeFragment)
         }
+        val btnBackWorkouts = view.findViewById<Button>(R.id.btnBackWorkouts)
+        btnBackWorkouts.setOnClickListener {
+            findNavController().navigate(R.id.action_workoutsFragment_to_backWorkoutsFragment)
+        }
+
         return view
     }
 }

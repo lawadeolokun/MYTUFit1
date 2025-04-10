@@ -117,14 +117,31 @@
         android:name="com.example.mytufit.WorkoutsFragment"
         android:label="Workouts"
         tools:layout="@layout/fragment_workouts">
+
         <action
             android:id="@+id/action_workoutsFragment_to_homeFragment"
-            app:destination="@id/homeFragment"/>
+            app:destination="@id/homeFragment" />
+
+        <action
+            android:id="@+id/action_workoutsFragment_to_backWorkoutsFragment"
+            app:destination="@id/backWorkoutsFragment" />
+
+        <action
+            android:id="@+id/action_backWorkoutsFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
+
     </fragment>
+
 
     <fragment
         android:id="@+id/writeFragment"
         android:name="com.example.mytufit.WriteFragment"
         android:label="Write"
         tools:layout="@layout/fragment_write"/>
+    <fragment
+        android:id="@+id/backWorkoutsFragment"
+        android:name="com.example.mytufit.BackWorkoutsFragment"
+        android:label="Back Workouts"
+        tools:layout="@layout/fragment_back_workouts" />
+
 </navigation>
