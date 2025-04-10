@@ -20,7 +20,7 @@
     <Button
         android:id="@+id/btnMealPlans"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:text="@string/meal_plans"
         app:backgroundTint="#7EA943"
@@ -28,17 +28,19 @@
     <Button
         android:id="@+id/btnDrinkPlans"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
-        android:text="View Drink Plans"
-        app:backgroundTint="#6AB7C6"
+        android:text="Drink Plans"
+        app:backgroundTint="#7EA943"
         app:cornerRadius="10dp" />
     <Button
         android:id="@+id/btnFavorites"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Favorites"
-        android:layout_marginTop="12dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:text="Favorites"
+        app:backgroundTint="#DC3838"
+        app:cornerRadius="10dp"
         />
 
 
