@@ -1,52 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#EEEEEE"
+    android:layout_marginBottom="12dp">
 
     <TextView
         android:id="@+id/tvWorkoutName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Workout Name"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#444"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvWorkoutLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#666"/>
+        android:text="Level"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tvWorkoutRepsSets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#666"/>
+        android:text="3 sets • 10 reps"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tvWorkoutDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp"
-        android:textColor="#333"/>
+        android:text="Description goes here"
+        android:textSize="18sp"/>
 
-    <!-- FIXED VIDEO SIZE -->
     <androidx.media3.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="#000"
-        app:use_controller="true"
-        app:resize_mode="fit" />
-
-
+        app:show_buffering="when_playing"
+        app:use_controller="false"
+        android:background="#000" />
 </LinearLayout>

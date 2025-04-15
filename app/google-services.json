@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "29634484133",
-    "project_id": "mytufit-ba1c6",
-    "storage_bucket": "mytufit-ba1c6.firebasestorage.app"
+    "project_number": "381081709408",
+    "firebase_url": "https://mytufit-1b64fbcc-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mytufit-1b64fbcc",
+    "storage_bucket": "mytufit-1b64fbcc.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:29634484133:android:a710bb77cebeda18a33a4c",
+        "mobilesdk_app_id": "1:381081709408:android:9600308e072d1adba94c05",
         "android_client_info": {
           "package_name": "com.example.mytufit"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBUTpjgVd372Yq6LdGiB8IdMp8b1z5PABc"
+          "current_key": "AIzaSyDlEKxUmp4CroI419Dr9zZfdADiOsoUcqY"
         }
       ],
       "services": {

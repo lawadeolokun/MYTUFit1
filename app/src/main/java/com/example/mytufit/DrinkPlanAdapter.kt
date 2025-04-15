@@ -40,16 +40,18 @@ class DrinkPlanAdapter(private var drinkList: List<DrinkPlan>) :
         val drink = drinkList[position]
 
         val uid = userId ?: return
-        val docId = drink.docId.ifEmpty { return }
+        val docId = drink.docId
+        if (docId.isEmpty()) return  // ✅ proper early return
+
 
         holder.tvName.text = drink.name
         holder.tvCategory.text = drink.category
         holder.tvCalories.text = "${drink.calories} kcal"
-        holder.tvProtein.text = "Protein ${drink.protein}g"
-        holder.tvCarbs.text = "Carbs ${drink.carbs}g"
+        holder.tvProtein.text = "${drink.protein}g Protein"
+        holder.tvCarbs.text = "${drink.carbs}g Carbs"
         holder.tvDuration.text = drink.duration
-        holder.tvIngredients.text = "Ingredients:\n${drink.ingredients.joinToString("\n")}"
-        holder.tvDirections.text = "Directions:\n${drink.directions}"
+        holder.tvIngredients.text = drink.ingredients.joinToString("\n")
+        holder.tvDirections.text = drink.directions
         Glide.with(holder.itemView.context).load(drink.imageUrl).into(holder.ivDrinkImage)
 
         val favDoc = db.collection("users").document(uid)

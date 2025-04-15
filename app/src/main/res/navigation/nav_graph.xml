@@ -130,16 +130,19 @@
 
         <action
             android:id="@+id/action_workoutsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"/>
 
         <action
             android:id="@+id/action_workoutsFragment_to_backWorkoutsFragment"
             app:destination="@id/backWorkoutsFragment" />
 
         <action
-            android:id="@+id/action_backWorkoutsFragment_to_workoutsFragment"
-            app:destination="@id/workoutsFragment" />
+            android:id="@+id/action_workoutsFragment_to_armsWorkoutsFragment"
+            app:destination="@id/armsWorkoutsFragment" />
 
+        <action
+            android:id="@+id/action_workoutsFragment_to_legsWorkoutsFragment"
+            app:destination="@id/legsWorkoutsFragment" />
     </fragment>
 
 
@@ -152,6 +155,32 @@
         android:id="@+id/backWorkoutsFragment"
         android:name="com.example.mytufit.BackWorkoutsFragment"
         android:label="Back Workouts"
-        tools:layout="@layout/fragment_back_workouts" />
+        tools:layout="@layout/fragment_back_workouts">
+
+        <action
+            android:id="@+id/action_backWorkoutsFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/armsWorkoutsFragment"
+        android:name="com.example.mytufit.ArmsWorkoutsFragment"
+        android:label="Arms Workouts"
+        tools:layout="@layout/fragment_arms_workouts">
+
+        <action
+            android:id="@+id/action_armsWorkoutsFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/legsWorkoutsFragment"
+        android:name="com.example.mytufit.LegsWorkoutsFragment"
+        android:label="Leg Workouts"
+        tools:layout="@layout/fragment_legs_workouts">
+        <action
+            android:id="@+id/action_legsWorkoutsFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
+    </fragment>
 
 </navigation>

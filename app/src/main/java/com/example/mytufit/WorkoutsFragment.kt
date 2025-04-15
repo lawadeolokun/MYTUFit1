@@ -29,6 +29,15 @@ class WorkoutsFragment : Fragment() {
         btnBackWorkouts.setOnClickListener {
             findNavController().navigate(R.id.action_workoutsFragment_to_backWorkoutsFragment)
         }
+        val btnArmWorkouts = view.findViewById<Button>(R.id.btnArmWorkouts)
+        btnArmWorkouts.setOnClickListener {
+            findNavController().navigate(R.id.action_workoutsFragment_to_armsWorkoutsFragment)
+        }
+
+        val btnLegWorkouts = view.findViewById<Button>(R.id.btnLegWorkouts)
+        btnLegWorkouts.setOnClickListener {
+            findNavController().navigate(R.id.action_workoutsFragment_to_legsWorkoutsFragment)
+        }
 
         return view
     }

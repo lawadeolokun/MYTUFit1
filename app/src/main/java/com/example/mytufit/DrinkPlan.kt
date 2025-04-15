@@ -9,5 +9,6 @@ data class DrinkPlan(
     val duration: String = "",
     val ingredients: List<String> = emptyList(),
     val directions: String = "",
-    val imageUrl: String = ""
+    val imageUrl: String = "",
+    val docId: String = ""
 )

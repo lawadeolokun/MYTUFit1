@@ -59,12 +59,13 @@ class DrinkPlansFragment : Fragment() {
             .get()
             .addOnSuccessListener { snapshot ->
                 for (doc in snapshot.documents) {
-                    val drink = doc.toObject(DrinkPlan::class.java)
+                    val drink = doc.toObject(DrinkPlan::class.java)?.copy(docId = doc.id)
                     if (drink != null) drinkList.add(drink)
                 }
                 adapter.updateList(drinkList)
             }
     }
+
 
     private fun searchDrinks(query: String) {
         val trimmed = query.trim()

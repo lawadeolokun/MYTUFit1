@@ -16,7 +16,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import androidx.media3.common.MediaItem
 
-class BackWorkoutsFragment : Fragment() {
+class ArmsWorkoutsFragment : Fragment() {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val playerList = mutableListOf<ExoPlayer>() // Track all ExoPlayers
@@ -25,18 +25,18 @@ class BackWorkoutsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_back_workouts, container, false)
+        val view = inflater.inflate(R.layout.fragment_arms_workouts, container, false)
 
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbarBackWorkouts)
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbarArmsWorkouts)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_backWorkoutsFragment_to_workoutsFragment)
         }
 
-        val containerLayout = view.findViewById<LinearLayout>(R.id.backWorkoutContainer)
+        val containerLayout = view.findViewById<LinearLayout>(R.id.armsWorkoutContainer)
 
         firestore.collection("workouts")
-            .whereEqualTo("category", "Back")
+            .whereEqualTo("category", "Arms")
             .get()
             .addOnSuccessListener { snapshot ->
                 Toast.makeText(requireContext(), "Loaded ${snapshot.size()} workouts", Toast.LENGTH_SHORT).show()

@@ -1,15 +1,14 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarBackWorkouts"
+        android:id="@+id/toolbarArmsWorkouts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:title="Back Workouts"
+        android:title="Arm Workouts"
         android:titleTextColor="@android:color/white" />
 
     <ScrollView
@@ -17,7 +16,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/backWorkoutContainer"
+            android:id="@+id/armsWorkoutContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
