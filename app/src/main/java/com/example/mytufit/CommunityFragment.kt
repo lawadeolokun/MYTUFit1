@@ -27,6 +27,14 @@ class CommunityFragment : Fragment() {
         val btnStretches = view.findViewById<Button>(R.id.btnStretches)
         val btnGeneralChat = view.findViewById<Button>(R.id.btnGeneralChat)
 
+        /*
+        val btnLoadTesting = view.findViewById<Button>(R.id.btnLoadTesting)
+
+        btnLoadTesting.setOnClickListener {
+            findNavController().navigate(R.id.action_communityFragment_to_loadTestingFragment)
+        }
+        */
+
         // When a button is clicked, navigate to TopicDetailFragment with the chosen topic name.
         btnWeightLoss.setOnClickListener {
             val bundle = Bundle().apply { putString("topicName", "Weight Loss") }

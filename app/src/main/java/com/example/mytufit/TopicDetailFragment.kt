@@ -1,6 +1,7 @@
 package com.example.mytufit
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,8 @@ class TopicDetailFragment :Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private var listenerRegistration: ListenerRegistration? = null
     private lateinit var topicName: String
+
+    private var loadStartTime: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +65,8 @@ class TopicDetailFragment :Fragment() {
         return view
     }
     private fun listenForPosts() {
+        loadStartTime = System.currentTimeMillis()
+
         listenerRegistration = firestore.collection("topics")
             .document(topicName)
             .collection("posts")
@@ -74,6 +79,10 @@ class TopicDetailFragment :Fragment() {
                     post?.let { postList.add(it) }
                 }
                 postAdapter.notifyDataSetChanged()
+
+                val loadEndTime = System.currentTimeMillis()
+                val loadDuration = loadEndTime - loadStartTime
+                Log.d("LoadTime", "Loaded ${postList.size} posts in $loadDuration ms")
             }
     }
     override fun onDestroyView() {
