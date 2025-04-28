@@ -73,7 +73,7 @@ class WriteFragment : Fragment() {
             title = titleText,
             body = messageText,
             timestamp = System.currentTimeMillis(),
-            likes = emptyMap()
+            likes = emptyList()
         )
 
         Toast.makeText(context, "Submitting post...", Toast.LENGTH_SHORT).show()

@@ -34,7 +34,7 @@ class PostAdapter(
         holder.tvLikeCount.text = likeCount.toString()
 
         val currentUserId = auth.currentUser?.uid
-        val hasLiked = currentUserId != null && post.likes?.containsKey(currentUserId) == true
+        val hasLiked = currentUserId != null && post.likes?.contains(currentUserId) == true
 
         if (hasLiked) {
             holder.btnLike.setImageResource(android.R.drawable.btn_star_big_on)

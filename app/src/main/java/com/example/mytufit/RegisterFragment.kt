@@ -38,6 +38,18 @@ class RegisterFragment : Fragment() {
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
+            } else if(!isValidPassword(password)){
+                androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                    .setTitle("Weak Password")
+                    .setMessage(
+                        "Password must:\n" +
+                                "- Be at least 8 characters\n" +
+                                "- Include uppercase and lowercase letters\n" +
+                                "- Include a number\n" +
+                                "- Include a special character (!@#\$%^&*)"
+                    )
+                    .setPositiveButton("OK", null)
+                    .show()
             } else {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
@@ -64,4 +76,18 @@ class RegisterFragment : Fragment() {
 
         return view
     }
+
+    private fun isValidPassword(password: String): Boolean {
+        // Check basic rules
+        if (password.length < 8) return false
+
+        // Check character rules
+        val hasUppercase = password.any { it.isUpperCase() }
+        val hasLowercase = password.any { it.isLowerCase() }
+        val hasDigit = password.any { it.isDigit() }
+        val hasSpecial = password.any { !it.isLetterOrDigit() }
+
+        return hasUppercase && hasLowercase && hasDigit && hasSpecial
+    }
+
 }
