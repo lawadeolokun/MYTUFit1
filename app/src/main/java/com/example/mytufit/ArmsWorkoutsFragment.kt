@@ -13,14 +13,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.ui.PlayerView
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
 
 class ArmsWorkoutsFragment : Fragment() {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val playerList = mutableListOf<ExoPlayer>() // Track all ExoPlayers
 
+    @androidx.media3.common.util.UnstableApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +57,7 @@ class ArmsWorkoutsFragment : Fragment() {
         return view
     }
 
+    @androidx.media3.common.util.UnstableApi
     private fun createWorkoutView(inflater: LayoutInflater, container: ViewGroup?, workout: Workout): View {
         val view = inflater.inflate(R.layout.item_workout, container, false)
 
@@ -62,17 +67,33 @@ class ArmsWorkoutsFragment : Fragment() {
         view.findViewById<TextView>(R.id.tvWorkoutDescription).text = workout.description
 
         val playerView = view.findViewById<PlayerView>(R.id.playerView)
-        val exoPlayer = ExoPlayer.Builder(requireContext()).build()
 
-        val mediaItem = MediaItem.fromUri(Uri.parse(workout.videoUrl))
+        // ExoPlayer with software decoder fallback
+        val exoPlayer = ExoPlayer.Builder(requireContext())
+            .setRenderersFactory(
+                DefaultRenderersFactory(requireContext())
+                    .setEnableDecoderFallback(true) // ✅ allow software decoding
+            )
+            .build()
+
+        val mediaItem = MediaItem.Builder()
+            .setUri(Uri.parse(workout.videoUrl))
+            .setMimeType("video/mp4") // Force mp4
+            .build()
+
         exoPlayer.setMediaItem(mediaItem)
         exoPlayer.prepare()
         exoPlayer.playWhenReady = false
         exoPlayer.volume = 1f
 
-        playerView.player = exoPlayer
+        exoPlayer.addListener(object : Player.Listener {
+            override fun onPlayerError(error: PlaybackException) {
+                Toast.makeText(requireContext(), "ExoPlayer error: ${error.message}", Toast.LENGTH_LONG).show()
+            }
+        })
 
-        playerView.useController = false // hide the controls
+        playerView.player = exoPlayer
+        playerView.useController = false // hide controls
 
         playerView.setOnClickListener {
             if (exoPlayer.isPlaying) {
@@ -82,7 +103,7 @@ class ArmsWorkoutsFragment : Fragment() {
             }
         }
 
-        playerList.add(exoPlayer) // Add to list for cleanup
+        playerList.add(exoPlayer) // Track player for releasing
 
         return view
     }
